@@ -11,9 +11,9 @@ enum TriggerDirection { none, right, left, up, down, undo }
 
 /// A Tinder-Like Widget.
 class TinderSwapCard extends StatefulWidget {
-  CardBuilder _cardBuilder;
-  int _totalNum;
-  int _stackNum;
+  required CardBuilder _cardBuilder;
+  required int _totalNum;
+  required int _stackNum;
   int _animDuration;
   double _swipeEdge;
   double _swipeEdgeVertical;
@@ -33,8 +33,8 @@ class TinderSwapCard extends StatefulWidget {
   /// it is the value of alignment, 0.0 means middle, so it need bigger than zero.
   /// , and size control params;
   TinderSwapCard(
-      {@required CardBuilder cardBuilder,
-      @required int totalNum,
+      {required CardBuilder cardBuilder,
+      required int totalNum,
       AmassOrientation orientation = AmassOrientation.BOTTOM,
       int stackNum = 3,
       int animDuration = 800,
@@ -42,10 +42,10 @@ class TinderSwapCard extends StatefulWidget {
       double swipeEdgeVertical = 8.0,
       bool swipeUp = false,
       bool swipeDown = false,
-      double maxWidth,
-      double maxHeight,
-      double minWidth,
-      double minHeight,
+      required double maxWidth,
+      required double maxHeight,
+      required double minWidth,
+      required double minHeight,
       bool allowVerticalMovement = true,
       this.cardController,
       this.swipeCompleteCallback,
