@@ -318,7 +318,7 @@ class CardAnimation {
       double swipeEdge,
       bool swipeUp,
       bool swipeDown) {
-    double endX, endY;
+    late double endX, endY;
 
     if (_TinderSwapCardState._trigger == TriggerDirection.none) {
       endX = beginAlign.x > 0
@@ -370,7 +370,7 @@ class CardAnimation {
 
   static Animation<Size> backCardSize(
       AnimationController controller, Size? beginSize, Size? endSize) {
-    return new SizeTween(begin: beginSize, end: endSize)?.animate(
+    return new SizeTween(begin: beginSize, end: endSize).animate(
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
   }
 
