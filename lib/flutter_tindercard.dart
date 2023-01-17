@@ -368,7 +368,7 @@ class CardAnimation {
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
   }
 
-  static Animation<Size> backCardSize(
+  static Animation<Size?> backCardSize(
       AnimationController controller, Size beginSize, Size endSize) {
     return new SizeTween(begin: beginSize, end: endSize).animate(
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
