@@ -3,8 +3,8 @@ library flutter_tindercard;
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-late List<Size> _cardSizes;
-late List<Alignment> _cardAligns;
+List<Size> _cardSizes = List.empty();
+List<Alignment> _cardAligns = List.empty();
 bool undoStatus = false;
 
 enum TriggerDirection { none, right, left, up, down, undo }
@@ -66,8 +66,8 @@ class TinderSwapCard extends StatefulWidget {
     double widthGap = maxWidth - minWidth;
     double heightGap = maxHeight - minHeight;
 
-    late List<Widget> _cardAligns;
-    late List<Widget> _cardSizes;
+    _cardAligns = new List.empty();
+    _cardSizes = new List.empty();
 
     for (int i = 0; i < _stackNum; i++) {
       _cardSizes.add(new Size(minWidth + (widthGap / _stackNum) * i,
@@ -160,7 +160,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
   }
 
   List<Widget> _buildCards(BuildContext context) {
-    late List<Widget> cards;
+    List<Widget> cards = List.empty();
     for (int i = _currentFront; i < _currentFront + widget._stackNum; i++) {
       cards.add(_buildCard(context, i));
     }
