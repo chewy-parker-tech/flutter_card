@@ -117,7 +117,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
                     widget._swipeEdge,
                     widget._swipeUp,
                     widget._swipeDown)
-                .value
+                ?.value
             : frontCardAlign,
         child: Transform.rotate(
             angle: (pi / 180.0) *
@@ -318,7 +318,7 @@ class CardAnimation {
       double swipeEdge,
       bool swipeUp,
       bool swipeDown) {
-    double endX, endY = 0.0, 0.0;
+    double endX, endY = 0.0;
 
     if (_TinderSwapCardState._trigger == TriggerDirection.none) {
       endX = beginAlign.x > 0
