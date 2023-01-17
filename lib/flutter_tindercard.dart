@@ -353,11 +353,9 @@ class CardAnimation {
       endX = beginAlign.x > 0
           ? (beginAlign.x > swipeEdge ? beginAlign.x + 10.0 : baseAlign.x)
           : (beginAlign.x < -swipeEdge ? beginAlign.x - 10.0 : baseAlign.x);
-    } else if (_TinderSwapCardState._trigger == TriggerDirection.left){
+    } else {
       double endX = beginAlign.x + swipeEdge;
       double endY = beginAlign.y + 0.5;
-    } else {
-
     }
     return new AlignmentTween(begin: beginAlign, end: new Alignment(endX, endY))
         .animate(
@@ -371,7 +369,7 @@ class CardAnimation {
   }
 
   static Animation<Size> backCardSize(
-      AnimationController controller, Size beginSize, Size endSize) {
+      AnimationController controller, Size? beginSize, Size? endSize) {
     return new SizeTween(begin: beginSize, end: endSize)?.animate(
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
   }
