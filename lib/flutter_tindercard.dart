@@ -311,15 +311,15 @@ typedef CardDragUpdateCallback = void Function(
 enum AmassOrientation { TOP, BOTTOM, LEFT, RIGHT }
 
 class CardAnimation {
-  static Animation<Alignment>? frontCardAlign(
+  static Animation<Alignment> frontCardAlign(
       AnimationController controller,
       Alignment beginAlign,
       Alignment baseAlign,
       double swipeEdge,
       bool swipeUp,
       bool swipeDown) {
-    double endX = 0.0, 
-    double endY = 0.0;
+    double endX, 
+    double endY;
 
     if (_TinderSwapCardState._trigger == TriggerDirection.none) {
       endX = beginAlign.x > 0
@@ -369,7 +369,7 @@ class CardAnimation {
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
   }
 
-  static Animation<Size?>? backCardSize(
+  static Animation<Size> backCardSize(
       AnimationController controller, Size? beginSize, Size? endSize) {
     return new SizeTween(begin: beginSize, end: endSize)?.animate(
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
