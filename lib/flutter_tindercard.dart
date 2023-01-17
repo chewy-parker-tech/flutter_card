@@ -318,8 +318,7 @@ class CardAnimation {
       double swipeEdge,
       bool swipeUp,
       bool swipeDown) {
-    double endX, 
-    double endY;
+    double endX, endY;
 
     if (_TinderSwapCardState._trigger == TriggerDirection.none) {
       endX = beginAlign.x > 0
