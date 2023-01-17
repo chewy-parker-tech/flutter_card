@@ -3,17 +3,17 @@ library flutter_tindercard;
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-List<Size> _cardSizes = new List();
-List<Alignment> _cardAligns = new List();
+List<Size> _cardSizes = new List.filled();
+List<Alignment> _cardAligns = new List.filled();
 bool undoStatus = false;
 
 enum TriggerDirection { none, right, left, up, down, undo }
 
 /// A Tinder-Like Widget.
 class TinderSwapCard extends StatefulWidget {
-  required CardBuilder _cardBuilder;
-  required int _totalNum;
-  required int _stackNum;
+  CardBuilder _cardBuilder;
+  int _totalNum;
+  int _stackNum;
   int _animDuration;
   double _swipeEdge;
   double _swipeEdgeVertical;
@@ -47,9 +47,9 @@ class TinderSwapCard extends StatefulWidget {
       required double minWidth,
       required double minHeight,
       bool allowVerticalMovement = true,
-      this.cardController,
-      this.swipeCompleteCallback,
-      this.swipeUpdateCallback})
+      required this.cardController,
+      required this.swipeCompleteCallback,
+      required this.swipeUpdateCallback})
       : this._cardBuilder = cardBuilder,
         this._totalNum = totalNum,
         assert(stackNum > 1),
@@ -66,8 +66,8 @@ class TinderSwapCard extends StatefulWidget {
     double widthGap = maxWidth - minWidth;
     double heightGap = maxHeight - minHeight;
 
-    _cardAligns = new List();
-    _cardSizes = new List();
+    _cardAligns = new List.filled();
+    _cardSizes = new List.filled();
 
     for (int i = 0; i < _stackNum; i++) {
       _cardSizes.add(new Size(minWidth + (widthGap / _stackNum) * i,
@@ -100,7 +100,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
   Alignment frontCardAlign;
   AnimationController _animationController;
   int _currentFront;
-  static TriggerDirection _trigger;
+  late static TriggerDirection _trigger;
   Widget _buildCard(BuildContext context, int realIndex) {
     if (realIndex < 0) {
       return Container();
@@ -160,7 +160,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
   }
 
   List<Widget> _buildCards(BuildContext context) {
-    List<Widget> cards = new List();
+    List<Widget> cards = new List.filled();
     for (int i = _currentFront; i < _currentFront + widget._stackNum; i++) {
       cards.add(_buildCard(context, i));
     }
