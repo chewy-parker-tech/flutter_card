@@ -152,7 +152,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
                     frontCardAlign.y < -3)
             ? CardAnimation.backCardSize(_animationController,
                     _cardSizes[index], _cardSizes[index + 1])
-                .value
+                ?.value
             : _cardSizes[index],
         child: widget._cardBuilder(context, widget._totalNum - realIndex - 1),
       ),
@@ -318,7 +318,7 @@ class CardAnimation {
       double swipeEdge,
       bool swipeUp,
       bool swipeDown) {
-    double endX, endY;
+    double endX, endY = 0, 0;
 
     if (_TinderSwapCardState._trigger == TriggerDirection.none) {
       endX = beginAlign.x > 0
