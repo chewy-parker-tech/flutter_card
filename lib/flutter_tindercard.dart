@@ -97,10 +97,10 @@ class TinderSwapCard extends StatefulWidget {
 
 class _TinderSwapCardState extends State<TinderSwapCard>
     with TickerProviderStateMixin {
-  Alignment frontCardAlign;
-  AnimationController _animationController;
-  int _currentFront;
-  late static TriggerDirection _trigger;
+  late Alignment frontCardAlign;
+  late AnimationController _animationController;
+  late int _currentFront;
+  static late TriggerDirection _trigger;
   Widget _buildCard(BuildContext context, int realIndex) {
     if (realIndex < 0) {
       return Container();
@@ -160,7 +160,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
   }
 
   List<Widget> _buildCards(BuildContext context) {
-    List<Widget> cards = new List.filled();
+    List<Widget> cards = new List();
     for (int i = _currentFront; i < _currentFront + widget._stackNum; i++) {
       cards.add(_buildCard(context, i));
     }
@@ -274,7 +274,7 @@ class _TinderSwapCardState extends State<TinderSwapCard>
 
   @override
   Widget build(BuildContext context) {
-    widget.cardController?.addListener((trigger) => triggerSwap(trigger));
+    widget.cardController.addListener((trigger) => triggerSwap(trigger));
 
     return Stack(children: _buildCards(context));
   }
@@ -354,8 +354,8 @@ class CardAnimation {
           ? (beginAlign.x > swipeEdge ? beginAlign.x + 10.0 : baseAlign.x)
           : (beginAlign.x < -swipeEdge ? beginAlign.x - 10.0 : baseAlign.x);
     } else if (_TinderSwapCardState._trigger == TriggerDirection.left){
-      endX = beginAlign.x + swipeEdge;
-      endY = beginAlign.y + 0.5;
+      double endX = beginAlign.x + swipeEdge;
+      double endY = beginAlign.y + 0.5;
     } else {
 
     }
@@ -372,7 +372,7 @@ class CardAnimation {
 
   static Animation<Size> backCardSize(
       AnimationController controller, Size beginSize, Size endSize) {
-    return new SizeTween(begin: beginSize, end: endSize).animate(
+    return new SizeTween(begin: beginSize, end: endSize)?.animate(
         new CurvedAnimation(parent: controller, curve: Curves.easeOut));
   }
 
@@ -386,7 +386,7 @@ class CardAnimation {
 typedef TriggerListener = void Function(TriggerDirection trigger);
 
 class CardController {
-  TriggerListener _listener;
+  late TriggerListener _listener;
 
   void triggerLeft() {
     if (_listener != null) {
@@ -422,7 +422,7 @@ class CardController {
   }
 
   void removeListener() {
-    _listener = null;
+    //_listener = null;
   }
 
   
